@@ -1,0 +1,95 @@
+* {
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Josefin Sans", sans-serif;
+  color: hsl(234, 39%, 85%);
+}
+.container {
+  min-height: 100vh;
+  background-color: hsl(235, 21%, 11%);
+  background-image: url("images/bg-desktop-dark.jpg");
+  background-repeat: repeat-x;
+}
+.wrapper {
+  position: relative;
+  top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 300px;
+}
+.heading h1 {
+  font-size: 42px;
+  padding: 15px;
+}
+.new-todo {
+  background-color: hsl(235, 24%, 19%);
+  padding: 15px 100px 15px 15px;
+  border-radius: 6px;
+  display: flex;
+  margin-top: 30px;
+}
+.new-todo-content {
+  background-color: hsl(235, 24%, 19%);
+  padding-left: 15px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: hsl(234, 39%, 85%);
+}
+
+.todo-list {
+  background-color: hsl(235, 24%, 19%);
+  padding: 15px;
+  margin-top: 20px;
+  min-width: 340px;
+}
+.list {
+  list-style-type: none;
+  padding-left: 0;
+}
+.btn-unchecked {
+  background-color: hsl(235, 24%, 19%);
+  border: 1px solid hsl(234, 39%, 85%);
+  border-radius: 50%;
+  width: 17px;
+  height: 17px;
+}
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px 15px;
+}
+.work {
+  padding-left: 15px;
+  font-size: 16px;
+  padding: 15px 100px 15px 15px;
+}
+.dlt-btn {
+  justify-self: flex-end;
+}
+/*.hidden {
+  display: none;
+}*/
+.comp-status {
+  text-align: center;
+  font-size: 12px;
+  padding-top: 20px;
+  cursor: pointer;
+}
+.comp-status span {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.comp-status span:hover {
+  color: hsl(236, 33%, 92%);
+  cursor: pointer;
+}
+.comp-status span:active {
+  color: hsl(237, 14%, 26%);
+}
