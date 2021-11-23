@@ -2,10 +2,16 @@
 const newTodoContent = document.querySelector(".new-todo-content");
 const newTodoBtn = document.querySelector(".new-todo .btn-unchecked");
 const todoList = document.querySelector(".list");
+const deleteBtn = document.getElementsByClassName("btns");
 
 //event listeners
 newTodoBtn.addEventListener("click", addTodo);
 window.addEventListener("DOMContentLoaded", displayTodos);
+//todoList.addEventListener();
+
+todoList.addEventListener("mouseover", displayCross);
+todoList.addEventListener("mouseout", hideCross);
+todoList.addEventListener("click", removeOrEdit);
 
 //functions
 
@@ -50,7 +56,8 @@ function addTodo(e) {
 
   newTodoContent.value = "";
 }
-function displayTodos() {
+function displayTodos(e) {
+  e.preventDefault();
   let todosList;
   if (localStorage.getItem("todosList") === null) todosList = [];
   else {
@@ -88,4 +95,29 @@ function displayTodos() {
 </li>`;
     todoList.insertAdjacentHTML("afterbegin", todo);
   });
+}
+
+function displayCross(e) {
+  if (e.target.classList.contains("dlt-btn")) {
+    e.target.classList.remove("hidden");
+  }
+}
+function hideCross(e) {
+  if (e.target.classList.contains("dlt-btn")) {
+    e.target.classList.add("hidden");
+  }
+}
+
+function removeOrEdit(e) {
+  if (e.target.classList.contains("dlt-btn")) {
+    let todosList;
+    todosList = JSON.parse(localStorage.getItem("todosList"));
+    let parentitem = e.target.closest(".todo");
+
+    let index = todosList.indexOf(parentitem.querySelector(".work").innerText);
+    console.log(index);
+    todosList.splice(index, 1);
+    localStorage.setItem("todosList", JSON.stringify(todosList));
+    e.target.closest(".todo-item").style.display = "none";
+  }
 }

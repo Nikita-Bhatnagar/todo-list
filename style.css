@@ -85,23 +85,9 @@ body {
 .btns {
   display: flex;
 }
-/*.hidden {
-  display: none;
-}*/
-.comp-status {
-  text-align: center;
-  font-size: 12px;
-  padding-top: 20px;
-  cursor: pointer;
+.hidden {
+  opacity: 0%;
 }
-.comp-status span {
-  padding-left: 4px;
-  padding-right: 4px;
-}
-.comp-status span:hover {
-  color: hsl(236, 33%, 92%);
-  cursor: pointer;
-}
-.comp-status span:active {
-  color: hsl(237, 14%, 26%);
+.unhide {
+  opacity: 100%;
 }
