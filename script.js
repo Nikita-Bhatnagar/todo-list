@@ -3,15 +3,20 @@ const newTodoContent = document.querySelector(".new-todo-content");
 const newTodoBtn = document.querySelector(".new-todo .btn-unchecked");
 const todoList = document.querySelector(".list");
 const deleteBtn = document.getElementsByClassName("btns");
+const editWindow = document.querySelector(".edit-window");
+const edit = document.querySelector(".edit");
+const closebtn = document.querySelector(".close");
+const editedTodo = document.querySelector(".newTodo");
 
 //event listeners
 newTodoBtn.addEventListener("click", addTodo);
 window.addEventListener("DOMContentLoaded", displayTodos);
-//todoList.addEventListener();
 
 todoList.addEventListener("mouseover", displayCross);
 todoList.addEventListener("mouseout", hideCross);
 todoList.addEventListener("click", removeOrEdit);
+
+closebtn.addEventListener("click", closeEditWindow);
 
 //functions
 
@@ -100,24 +105,43 @@ function displayTodos(e) {
 function displayCross(e) {
   if (e.target.classList.contains("dlt-btn")) {
     e.target.classList.remove("hidden");
+  } else if (e.target.classList.contains("edit-btn")) {
+    e.target.classList.remove("hidden");
   }
 }
 function hideCross(e) {
   if (e.target.classList.contains("dlt-btn")) {
     e.target.classList.add("hidden");
+  } else if (e.target.classList.contains("edit-btn")) {
+    e.target.classList.add("hidden");
   }
 }
-
+var parentitem;
 function removeOrEdit(e) {
-  if (e.target.classList.contains("dlt-btn")) {
-    let todosList;
-    todosList = JSON.parse(localStorage.getItem("todosList"));
-    let parentitem = e.target.closest(".todo");
+  parentitem = e.target.closest(".todo");
+  let todosList;
+  todosList = JSON.parse(localStorage.getItem("todosList"));
 
-    let index = todosList.indexOf(parentitem.querySelector(".work").innerText);
-    console.log(index);
+  let index = todosList.indexOf(parentitem.querySelector(".work").innerText);
+  if (e.target.classList.contains("dlt-btn")) {
     todosList.splice(index, 1);
     localStorage.setItem("todosList", JSON.stringify(todosList));
     e.target.closest(".todo-item").style.display = "none";
+  } else if (e.target.classList.contains("edit-btn")) {
+    editWindow.style.zIndex = "1";
   }
+  edit.addEventListener("click", editing(parentitem));
+  function editing(parentitem) {
+    return function () {
+      if (editedTodo.value !== "") {
+        parentitem.querySelector(".work").innerText = editedTodo.value;
+        todosList.splice(index, 1, editedTodo.value);
+      }
+      localStorage.setItem("todosList", JSON.stringify(todosList));
+    };
+  }
+}
+
+function closeEditWindow(e) {
+  editWindow.style.zIndex = "-1";
 }
