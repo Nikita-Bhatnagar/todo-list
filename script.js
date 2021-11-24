@@ -18,8 +18,6 @@ const divTodoList = document.querySelector(".todo-list");
 //event listeners
 newTodoBtn.addEventListener("click", addTodo);
 window.addEventListener("DOMContentLoaded", displayTodos);
-todoList.addEventListener("mouseover", displayCross);
-todoList.addEventListener("mouseout", hideCross);
 todoList.addEventListener("click", removeOrEdit);
 completionStatus.addEventListener("click", filter);
 closebtn.addEventListener("click", closeEditWindow);
@@ -42,12 +40,12 @@ function addTodo(e) {
   <div class="btns">
     <img
       src="images/icon-cross.svg"
-      class="dlt-btn hidden"
+      class="dlt-btn"
       alt="delete"
     />
  
 
-  <i class="far fa-edit edit-btn hidden"></i></div>
+  <i class="far fa-edit edit-btn"></i></div>
 </div>
 <hr
   style="
@@ -92,12 +90,12 @@ function displayTodos(e) {
   <div class="btns">
     <img
       src="images/icon-cross.svg"
-      class="dlt-btn hidden"
+      class="dlt-btn"
       alt="delete"
     />
  
 
-  <i class="far fa-edit edit-btn hidden"></i></div>
+  <i class="far fa-edit edit-btn"></i></div>
 </div>
 <hr
   style="
@@ -112,20 +110,6 @@ function displayTodos(e) {
   hideStatus();
 }
 
-function displayCross(e) {
-  if (e.target.classList.contains("dlt-btn")) {
-    e.target.classList.remove("hidden");
-  } else if (e.target.classList.contains("edit-btn")) {
-    e.target.classList.remove("hidden");
-  }
-}
-function hideCross(e) {
-  if (e.target.classList.contains("dlt-btn")) {
-    e.target.classList.add("hidden");
-  } else if (e.target.classList.contains("edit-btn")) {
-    e.target.classList.add("hidden");
-  }
-}
 var parentitem;
 function removeOrEdit(e) {
   parentitem = e.target.closest(".todo");
